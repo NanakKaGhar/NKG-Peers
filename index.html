@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NKG Peers | Peer Learning Platform by Nanak Ka Ghar Foundation</title>
+  <meta name="description" content="NKG Peers is an initiative by Nanak Ka Ghar Foundation providing a platform for learners (especially students) to get guidance, discuss projects, and explore various domains through peer collaboration." />
+  <meta name="keywords" content="NKG Peers, peer learning, project collaboration, student guidance, Nanak Ka Ghar Foundation, mentorship, teamwork" />
+  <meta name="author" content="Nanak Ka Ghar Foundation" />
+  <link rel="canonical" href="https://nkgpeers.nanakkaghar.org" />
+
+  <!-- Open Graph Tags -->
+  <meta property="og:title" content="NKG Peers | Peer Learning Platform" />
+  <meta property="og:description" content="Join NKG Peers for collaborative learning, project guidance, and domain exploration with peers and like-minded individuals." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://nkgpeers.nanakkaghar.org/og-image.png" />
+  <meta property="og:url" content="https://nkgpeers.nanakkaghar.org" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👥</text></svg>">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-tertiary: #1a1a1a;
+      --accent-primary: #3b82f6;
+      --accent-secondary: #06b6d4;
+      --text-primary: #ffffff;
+      --text-secondary: #a1a1aa;
+      --border-color: #27272a;
+    }
+
+    * {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    .font-heading {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    /* Dark grid background */
+    .grid-bg {
+      background-image: 
+        linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+
+    /* Subtle gradient overlays */
+    .gradient-overlay {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+    }
+
+    /* Glass morphism - more subtle */
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .glass-dark {
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Hover effects */
+    .hover-lift {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Subtle glow effects */
+    .glow-blue {
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .glow-blue:hover {
+      box-shadow: 0 0 40px rgba(59, 130, 246, 0.4);
+    }
+
+    /* Typing animation */
+    .typing-text {
+      overflow: hidden;
+      border-right: 2px solid var(--accent-primary);
+      white-space: nowrap;
+      animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent; }
+      50% { border-color: var(--accent-primary); }
+    }
+
+    /* Scroll reveal */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Feature cards */
+    .feature-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+      border-color: rgba(59, 130, 246, 0.3);
+      transform: translateY(-4px);
+    }
+
+    /* Animated border */
+    .animated-border {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .animated-border::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.4), transparent);
+      animation: slide 3s infinite;
+    }
+
+    @keyframes slide {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-secondary);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+      border-radius: 4px;
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      transform: translateX(-100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+
+    /* Stats counter animation */
+    .stat-number {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Button styles */
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Floating elements */
+    .floating {
+      animation: floating 6s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Text gradient */
+    .text-gradient {
+      background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-900 text-white antialiased overflow-x-hidden">
+  <!-- Background Grid -->
+  <div class="fixed inset-0 grid-bg opacity-50 pointer-events-none"></div>
+
+  <!-- Navigation -->
+  <header class="sticky top-0 z-50 glass-dark border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+          <img viewBox="0 0 24 24" src="og-image.png.png">
+                      </img>
+        </div>
+        <span class="text-xl font-bold font-heading">NKG Peers</span>
+      </div>
+
+      <nav class="hidden md:flex space-x-8">
+        <a href="#about" class="text-gray-300 hover:text-white transition-colors duration-300 relative group">
+          About
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#features" class="text-gray-300 hover:text-white transition-colors duration-300 relative group">
+          Features
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#join" class="text-gray-300 hover:text-white transition-colors duration-300 relative group">
+          Join Us
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#nkg" class="text-gray-300 hover:text-white transition-colors duration-300 relative group">
+          Foundation
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </nav>
+
+      <div class="flex items-center space-x-4">
+        <a href="https://www.nanakkaghar.org" target="_blank" class="hidden md:block btn-primary text-white py-2 px-6 rounded-lg font-medium">
+          Main Website
+        </a>
+        <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed top-0 left-0 w-full h-full glass-dark md:hidden z-40">
+      <div class="flex flex-col items-center justify-center h-full space-y-8">
+        <button class="absolute top-4 right-4 text-white text-2xl" onclick="toggleMobileMenu()">&times;</button>
+        <a href="#about" class="text-white text-xl hover:text-blue-400 transition-colors" onclick="toggleMobileMenu()">About</a>
+        <a href="#features" class="text-white text-xl hover:text-blue-400 transition-colors" onclick="toggleMobileMenu()">Features</a>
+        <a href="#join" class="text-white text-xl hover:text-blue-400 transition-colors" onclick="toggleMobileMenu()">Join Us</a>
+        <a href="#nkg" class="text-white text-xl hover:text-blue-400 transition-colors" onclick="toggleMobileMenu()">Foundation</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative py-20 md:py-32 overflow-hidden">
+    <div class="absolute inset-0 gradient-overlay"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="flex flex-col lg:flex-row items-center gap-16">
+        <div class="lg:w-1/2 space-y-8">
+          <div class="space-y-6">
+            <h1 class="text-5xl md:text-7xl font-heading font-bold leading-tight">
+              Connect. <br>
+              <span class="typing-text inline-block">Collaborate.</span> <br>
+              <span class="text-gradient">Grow Together.</span>
+            </h1>
+            <p class="text-xl text-gray-300 leading-relaxed max-w-2xl">
+              NKG Peers is a sophisticated platform designed for ambitious learners and students who seek meaningful collaboration, project guidance, and domain exploration through peer-to-peer networks.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 pt-8">
+              <a href="#join" class="btn-primary text-white py-4 px-8 rounded-lg text-lg font-semibold glow-blue">
+                Join Our Community
+              </a>
+              <a href="#features" class="btn-secondary text-white py-4 px-8 rounded-lg text-lg font-semibold">
+                Explore Features
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="lg:w-1/2 relative">
+          <div class="relative w-full h-96 flex items-center justify-center">
+            <div class="absolute inset-0 glass rounded-3xl"></div>
+            <div class="relative z-10 grid grid-cols-3 gap-4 p-8">
+              <div class="floating bg-gradient-to-br from-blue-500/20 to-cyan-500/20 p-4 rounded-xl">
+                <div class="text-3xl mb-2">💡</div>
+                <div class="text-sm text-gray-300">Ideas</div>
+              </div>
+              <div class="floating bg-gradient-to-br from-blue-500/20 to-cyan-500/20 p-4 rounded-xl" style="animation-delay: 1s;">
+                <div class="text-3xl mb-2">🤝</div>
+                <div class="text-sm text-gray-300">Connect</div>
+              </div>
+              <div class="floating bg-gradient-to-br from-blue-500/20 to-cyan-500/20 p-4 rounded-xl" style="animation-delay: 2s;">
+                <div class="text-3xl mb-2">🚀</div>
+                <div class="text-sm text-gray-300">Growth</div>
+              </div>
+              <div class="floating bg-gradient-to-br from-blue-500/20 to-cyan-500/20 p-4 rounded-xl col-span-3" style="animation-delay: 0.5s;">
+                <div class="text-4xl mb-2">🎓</div>
+                <div class="text-lg font-semibold">Learn Together</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section
+  <section class="py-16 border-y border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="text-center scroll-reveal">
+          <div class="stat-number text-4xl md:text-5xl font-bold text-white mb-2" data-count="1000">0</div>
+          <div class="text-gray-400 font-medium">Active Members</div>
+        </div>
+        <div class="text-center scroll-reveal" style="animation-delay: 0.2s;">
+          <div class="stat-number text-4xl md:text-5xl font-bold text-white mb-2" data-count="500">0</div>
+          <div class="text-gray-400 font-medium">Projects Shared</div>
+        </div>
+        <div class="text-center scroll-reveal" style="animation-delay: 0.4s;">
+          <div class="stat-number text-4xl md:text-5xl font-bold text-white mb-2" data-count="50">0</div>
+          <div class="text-gray-400 font-medium">Study Groups</div>
+        </div>
+        <div class="text-center scroll-reveal" style="animation-delay: 0.6s;">
+          <div class="stat-number text-4xl md:text-5xl font-bold text-white mb-2" data-count="25">0</div>
+          <div class="text-gray-400 font-medium">Domains Covered</div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- Features Section -->
+  <section id="features" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 scroll-reveal">
+        <h2 class="text-4xl md:text-6xl font-heading font-bold mb-6">
+          Why Choose <span class="text-gradient">NKG Peers?</span>
+        </h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+          A professional platform designed for serious learners who value quality collaboration, meaningful connections, and academic excellence.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div class="feature-card rounded-2xl p-8 hover-lift scroll-reveal">
+          <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Project Discussions</h3>
+          <p class="text-gray-400">Engage in meaningful conversations about your projects with peers who share your passion for innovation.</p>
+        </div>
+
+        <div class="feature-card rounded-2xl p-8 hover-lift scroll-reveal" style="animation-delay: 0.2s;">
+          <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Domain Exploration</h3>
+          <p class="text-gray-400">Discover new fields of study and research with guidance from experienced peers and domain experts.</p>
+        </div>
+
+        <div class="feature-card rounded-2xl p-8 hover-lift scroll-reveal" style="animation-delay: 0.4s;">
+          <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Peer Mentorship</h3>
+          <p class="text-gray-400">Access mentorship from advanced peers and contribute your expertise to help others grow.</p>
+        </div>
+
+        <div class="feature-card rounded-2xl p-8 hover-lift scroll-reveal" style="animation-delay: 0.6s;">
+          <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-4">professional Network</h3>
+          <p class="text-gray-400">Connect with ambitious students and professionals in your field of interest.</p>
+        </div>
+      </div>
+
+      <!-- Extended Features
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="glass rounded-2xl p-8 hover-lift scroll-reveal">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-lg flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold">Progress Tracking</h3>
+          </div>
+          <p class="text-gray-400">Monitor your learning journey and celebrate achievements with detailed progress analytics.</p>
+        </div>
+
+        <div class="glass rounded-2xl p-8 hover-lift scroll-reveal" style="animation-delay: 0.2s;">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-lg flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold">Resource Library</h3>
+          </div>
+          <p class="text-gray-400">Access curated learning materials and resources shared by the community of learners.</p>
+        </div>
+
+        <div class="glass rounded-2xl p-8 hover-lift scroll-reveal" style="animation-delay: 0.4s;">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-lg flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold">Excellence Recognition</h3>
+          </div>
+          <p class="text-gray-400">Get recognized for outstanding contributions and build your academic and professional reputation.</p>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- Join Section -->
+  <section id="join" class="py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="glass rounded-3xl p-12 text-center scroll-reveal animated-border">
+        <h2 class="text-4xl md:text-5xl font-heading font-bold mb-6">
+          Ready to Elevate Your <span class="text-gradient">Learning Experience?</span>
+        </h2>
+        <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+          Join a community of dedicated learners, innovators, and future leaders who are committed to excellence and collaborative growth.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-6 justify-center">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdlPWdbxVvIJcGyArXF6syKQKLeFQroc9kYP38XlITaozpGHA/viewform?usp=header" class="btn-primary text-white py-4 px-8 rounded-lg text-lg font-semibold glow-blue">
+            Get Started Today
+          </a>
+          <a href="#nkg" class="btn-secondary text-white py-4 px-8 rounded-lg text-lg font-semibold">
+            Learn About NKG
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About NKG Foundation -->
+  <section id="nkg" class="py-20 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row items-center gap-16">
+        <div class="lg:w-1/2 scroll-reveal">
+          <h2 class="text-4xl md:text-5xl font-heading font-bold mb-8">
+            About <span class="text-gradient">Nanak Ka Ghar Foundation</span>
+          </h2>
+          <div class="space-y-6 text-lg text-gray-300 leading-relaxed">
+            <p>
+              Nanak Ka Ghar Foundation is a distinguished nonprofit organization committed to fostering unity, compassion, and social advancement through strategic initiatives in education, healthcare, and community development.
+            </p>
+            <p>
+              Our foundation champions the philosophy of collective growth and peer-driven learning. NKG Peers represents our flagship educational initiative, meticulously designed to cultivate a sophisticated network that empowers students and lifelong learners to achieve excellence.
+            </p>
+            <div class="flex items-center space-x-6 pt-8">
+              <a href="https://www.nanakkaghar.org" target="_blank" class="btn-primary text-white py-3 px-8 rounded-lg font-semibold glow-blue">
+                Explore Foundation
+              </a>
+              <div class="flex space-x-4 text-2xl">
+                <span class="opacity-60">🎓</span>
+                <span class="opacity-60">🤝</span>
+                <span class="opacity-60">🌟</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="lg:w-1/2 scroll-reveal" style="animation-delay: 0.3s;">
+          <div class="grid grid-cols-1 gap-6">
+            <div class="glass rounded-2xl p-6 hover-lift">
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold mb-2">Our Mission</h3>
+                  <p class="text-gray-400">Empowering communities through innovative education, collaborative learning, and sustainable development initiatives.</p>
+                </div>
+              </div>
+            </div>
+            <div class="glass rounded-2xl p-6 hover-lift">
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold mb-2">Our Vision</h3>
+                  <p class="text-gray-400">A world where quality education is accessible, learning is collaborative, and knowledge transforms communities.</p>
+                </div>
+              </div>
+            </div>
+            <div class="glass rounded-2xl p-6 hover-lift">
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold mb-2">Our Values</h3>
+                  <p class="text-gray-400">Unity, compassion, excellence, innovation, and the unwavering commitment to lifelong learning.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900/50 backdrop-blur-sm border-t border-gray-800 py-16 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="md:col-span-2">
+          <div class="flex items-center space-x-3 mb-6">
+            <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+              <img viewBox="0 0 24 24" src="og-image.png.png">
+                      </img>
+            </div>
+            <span class="text-2xl font-bold font-heading">NKG Peers</span>
+          </div>
+          <p class="text-gray-400 mb-6 max-w-md leading-relaxed">
+            A sophisticated peer-learning platform designed for ambitious students and lifelong learners who value excellence, collaboration, and meaningful growth.
+          </p>
+          <div class="flex space-x-4">
+            <a href="mailto:contact@nanakkaghar.org" class="w-10 h-10 glass rounded-lg flex items-center justify-center hover:bg-white/10 transition-colors">
+              <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="font-heading font-bold text-lg mb-6">Quick Navigation</h3>
+          <ul class="space-y-3">
+            <li><a href="#about" class="text-gray-400 hover:text-white transition-colors duration-300">About Platform</a></li>
+            <li><a href="#features" class="text-gray-400 hover:text-white transition-colors duration-300">Features</a></li>
+            <li><a href="#join" class="text-gray-400 hover:text-white transition-colors duration-300">Join Community</a></li>
+            <li><a href="#nkg" class="text-gray-400 hover:text-white transition-colors duration-300">Foundation</a></li>
+          </ul>
+        </div>
+        
+        
+      </div>
+      
+      <div class="border-t border-gray-800 mt-12 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="text-gray-500 text-sm mb-4 md:mb-0">
+            &copy; 2025 NKG Peers · An initiative by Nanak Ka Ghar Foundation · Designed for Excellence
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('open');
+    }
+
+    // Scroll reveal animation
+    function revealOnScroll() {
+      const reveals = document.querySelectorAll('.scroll-reveal');
+      
+      reveals.forEach(element => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < windowHeight - elementVisible) {
+          element.classList.add('revealed');
+        }
+      });
+    }
+
+    // Animated counter
+    function animateCounters() {
+      const counters = document.querySelectorAll('[data-count]');
+      
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-count'));
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+        
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          counter.textContent = Math.floor(current);
+        }, 16);
+      });
+    }
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Typing animation restart
+    function restartTypingAnimation() {
+      const typingElement = document.querySelector('.typing-text');
+      if (typingElement) {
+        typingElement.style.animation = 'none';
+        setTimeout(() => {
+          typingElement.style.animation = 'typing 3s steps(30, end), blink 0.75s step-end infinite';
+        }, 100);
+      }
+    }
+
+    // Initialize animations and effects
+    window.addEventListener('scroll', revealOnScroll);
+
+    window.addEventListener('load', () => {
+      revealOnScroll();
+      setTimeout(animateCounters, 1000);
+    });
+
+    // Restart typing animation every 8 seconds
+    setInterval(restartTypingAnimation, 8000);
+
+    // Enhanced hover effects
+    document.querySelectorAll('.hover-lift').forEach(element => {
+      element.addEventListener('mouseenter', () => {
+        element.style.transform = 'translateY(-8px)';
+      });
+      
+      element.addEventListener('mouseleave', () => {
+        element.style.transform = 'translateY(0)';
+      });
+    });
+
+    // Progressive loading animation
+    window.addEventListener('load', () => {
+      const elements = document.querySelectorAll('.scroll-reveal');
+      elements.forEach((element, index) => {
+        setTimeout(() => {
+          element.classList.add('revealed');
+        }, index * 100);
+      });
+    });
+
+    // Smooth scroll behavior enhancement
+    document.documentElement.style.scrollBehavior = 'smooth';
+  </script>
+</body>
+</html>
